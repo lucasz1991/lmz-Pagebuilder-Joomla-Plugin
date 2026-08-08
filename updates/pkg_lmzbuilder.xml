@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+    <update>
+        <name>LMZ Builder Suite</name>
+        <description>Page Builder, Studio Modules, Content API, Frontend- und Admin-Template sowie QuickIcon-Plugin.</description>
+        <element>pkg_lmzbuilder</element>
+        <type>package</type>
+        <version>1.0.0</version>
+        <infourl title="LMZ Builder Suite">https://src.follow-flow.de/lmzbuilder/</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://src.follow-flow.de/lmzbuilder/packages/pkg_lmzbuilder-1.0.0.zip</downloadurl>
+        </downloads>
+        <tags><tag>stable</tag></tags>
+        <maintainer>LMZ Media</maintainer>
+        <maintainerurl>https://lmz-media.de</maintainerurl>
+        <targetplatform name="joomla" version="5\.[0-9]+" />
+        <php_minimum>8.1</php_minimum>
+    </update>
+</updates>
