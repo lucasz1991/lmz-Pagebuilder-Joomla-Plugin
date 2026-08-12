@@ -1,92 +1,96 @@
-# LMZ Builder Suite — Joomla-Paket & Update-Quelle
+# LMZ Builder Suite — Joomla-Paket und Aktualisierungsdienst
 
-Ein installierbares Joomla-Paket, das die komplette LMZ-Builder-Suite bündelt und
-über einen eigenen Update-Server auf dem eigenen Host update-fähig macht — für
-mehrere Projekte, ohne Lizenzkey.
+Ein installierbares Joomla-Paket, das die LMZ-Builder-Suite bündelt, sowie der
+Aktualisierungsdienst, über den sich alle Installationen selbst aktuell halten.
 
-## Inhalt des Bundles (`pkg_lmzbuilder`)
+Ziel ist ein **eigenständiges Produkt**: installierbar auf beliebigen
+Joomla-5.4-Seiten, nicht nur auf der Seite, aus der es entstanden ist.
 
-| Extension | Typ | Element |
-|---|---|---|
-| Page Builder | Komponente | `com_lmzpagebuilder` |
-| Studio Modules (Deutschlandkarten) | Komponente | `com_lmzstudiomodules` |
-| Content Studio API | Komponente | `com_lmzcontentapi` |
-| Frontend-Template | Template (site) | `lmz_builder` |
-| Admin-Template | Template (admin) | `lmz_builder_admin` |
-| QuickIcon-Plugin | Plugin | `quickicon/lmzpagebuilder` |
+---
 
-Ein Klick installiert alles; ein Update aktualisiert die ganze Suite.
+## Aufbau des Repos
 
-## Verzeichnisse
+| Ordner | Zweck |
+|---|---|
+| `server/` | Wird auf `src.follow-flow.de` ausgeliefert und beantwortet dort die Aktualisierungsanfragen. Siehe [server/README.md](server/README.md). |
+| `build.php` | Baut die installierbaren Archive und das Paket. |
+| `dist/` | Bauergebnis. Nicht versioniert — entsteht bei jedem Lauf neu. |
 
-- `build.php` — baut das Paket aus dem laufenden Joomla-Install neu (wiederholbar).
-- `dist/` — Ergebnis: `pkg_lmzbuilder-<version>.zip` (das installierbare Paket) und
-  die einzelnen Extension-ZIPs.
-- `updates/` — **das wird auf den Update-Server geladen** (siehe unten).
+---
 
-## Neu bauen
+## Stand der Arbeit
 
-```bash
-cd Website/lmz-Pagebuilder-Joomla-Plugin
-php build.php            # baut Version 1.0.0
-php build.php 1.0.1      # baut eine neue Version
-```
+Der Aktualisierungsdienst ist **fertig und auslieferbar**. Das Produktpaket
+ist es **noch nicht** — eine Prüfung hat fünf Stellen gefunden, an denen die
+Suite auf ihre Ursprungsseite festgelegt ist und auf einer fremden Installation
+Schaden anrichten würde:
 
-`build.php` liest die Extensions aus dem Live-Install
-(`Website/railtime-joomla-website`), rekonstruiert die installierbaren ZIPs,
-schnürt das `pkg`-Bundle und erzeugt die Update-Server-Dateien. Ausgeschlossen
-wird bewusst der Fremdkörper `media/com_lmzpagebuilder/updates/` (ein 54-MB-ZIP
-eines früheren Package-Versuchs — kann im Live-Install gelöscht werden).
+| Befund | Wirkung auf einer fremden Seite |
+|---|---|
+| Der Installer der Kartenkomponente legt 83 fremde Standorte samt Anschrift an | Fremddaten in der Kundendatenbank |
+| Das Paket bündelt ein Bewerbungsformular mit fester Empfängeradresse | Bewerbungen gehen an das falsche Unternehmen |
+| Das Paket bündelt 66 MB ortsgebundenes Bildmaterial | Unnötige Last, fremde Inhalte |
+| Der SEO-Crawler ist fest auf eine Domain verriegelt | Wirft dort eine Ausnahme, Auswertung unbenutzbar |
+| Die Editor-Oberfläche lädt ihr Aussehen aus einem bestimmten Template | Ohne dieses Template bleibt der Editor ungestaltet |
+| `postflight()` löscht ungefragt Joomla-Standarddaten | Eingriff in eine fremde Installation |
 
-## Installieren (in jedem Projekt)
+Deshalb liegt unter `server/lmzbuilder/pkg_lmzbuilder.xml` bewusst ein
+**leeres** Versionsverzeichnis: Joomla liest daraus „nichts Neues". Ein Eintrag,
+der auf ein noch nicht ausgeliefertes Paket zeigt, würde auf jeder
+angeschlossenen Seite eine fehlschlagende Aktualisierung melden.
 
-Joomla-Admin → **System → Installieren → Erweiterungen → Paketdatei hochladen** →
-`dist/pkg_lmzbuilder-<version>.zip` hochladen. Beim Installieren registriert
-Joomla automatisch die Update-Quelle (siehe `<updateservers>` im Paketmanifest),
-sodass künftige Updates gefunden werden.
+---
 
-> Hinweis: Über einen bestehenden Install (wie dieses RailTime-Projekt, in dem die
-> Extensions bereits einzeln vorhanden sind) einmal das Paket installieren —
-> dadurch werden alle Teile als verwaltete Suite zusammengefasst und der
-> Update-Check aktiviert.
+## Lizenzlage — bitte lesen
 
-## Update-Server hosten
+Die Suite verwendet **FontAwesome Pro**. Das ist kommerziell lizenziert und
+darf nicht weitergegeben werden.
 
-Den **Inhalt von `updates/`** auf den Server unter dieser Basis-URL ablegen:
+> **Diese Dateien lagen bereits offen.** Bis zur Bereinigung enthielt die
+> versionierte `dist/com_lmzpagebuilder.zip` 15 MB FontAwesome Pro, dazu 0,9 MB
+> in `tpl_lmz_builder.zip` — in einem öffentlichen Repo, frei über
+> `raw.githubusercontent.com` abrufbar.
+>
+> Die Dateien sind aus der Verfolgung genommen und die `.gitignore` hält sie
+> künftig draußen. **Sie stecken aber weiterhin in der Git-Historie** und sind
+> über ältere Commits weiter erreichbar. Um sie wirklich zu entfernen, muss die
+> Historie umgeschrieben werden (`git filter-repo`) — das erzwingt einen
+> `push --force`, und wer das Repo geklont hat, muss neu klonen.
+
+Für das Produktpaket sind zwei Wege möglich:
+
+1. **FontAwesome Free ausliefern**, Pro bleibt der eigenen Seite vorbehalten.
+   Dann darf alles offen liegen.
+2. **Pro ausliefern, aber hinter dem Schlüssel** des Torwächters. Das Repo
+   bleibt frei von den Schriften; nur der Server kennt sie.
+
+Der Torwächter unter `server/lmzbuilder/get.php` beherrscht beides.
+
+---
+
+## Aktualisierungsdienst in Kürze
 
 ```
 https://src.follow-flow.de/lmzbuilder/
-├── pkg_lmzbuilder.xml              (Update-XML, die Joomla pollt)
-└── packages/
-    └── pkg_lmzbuilder-<version>.zip (das herunterladbare Paket)
+├── pkg_lmzbuilder.xml   ← frei abrufbar, nennt nur die Fassung
+├── get.php              ← prüft den Schlüssel, liefert das Paket
+└── packages/            ← gesperrt, nur über get.php erreichbar
 ```
 
-Kein Lizenzkey, keine Zugangssperre — frei ladbar. Die URL ist bereits in den
-Paketmanifesten hinterlegt.
+Joomla holt die XML **ohne Anmeldung** — sie muss offen sein, sonst erfährt
+keine Seite je von einer neuen Fassung. Das Paket dagegen darf geschützt sein:
+Joomla hängt den unter *Extra Query* hinterlegten Schlüssel ausschließlich an
+die Download-Adresse an, nie an den XML-Abruf.
 
-## Auto-Updates
+Einrichtung Schritt für Schritt: [server/README.md](server/README.md)
 
-- Joomla prüft die Update-Quelle regelmäßig und **meldet** verfügbare Updates unter
-  *System → Aktualisieren → Erweiterungen*. Ein Klick installiert die neue Suite.
-- Für **automatische Prüfung/Benachrichtigung** in *System → Planer (Scheduled Tasks)*
-  die Aufgabe **„Update: Aktualisierungsinformationen abrufen"** (bzw.
-  „Aktualisierungsbenachrichtigung") aktivieren. Joomla installiert Updates aus
-  Sicherheitsgründen nicht vollständig unbeaufsichtigt; die Quelle + Benachrichtigung
-  sind eingerichtet, der finale Klick bleibt bewusst manuell.
+---
 
-## Neue Version veröffentlichen
+## Was noch fehlt
 
-1. `php build.php 1.0.1`
-2. `updates/pkg_lmzbuilder.xml` **und** `updates/packages/pkg_lmzbuilder-1.0.1.zip`
-   auf den Update-Server laden (die XML immer überschreiben — sie nennt die
-   aktuellste Version).
-3. In den Projekten meldet Joomla das Update automatisch.
-
-## Lizenz-Hinweis (wichtig)
-
-Dieses Bundle enthält **FontAwesome Pro** (im Frontend-Template und in der
-Page-Builder-Media). Das ist ausschließlich für die **eigenen Projekte** unter
-einer gültigen FA-Pro-Lizenz zulässig. Der Update-Server darf **nicht öffentlich**
-verlinkt/frei zugänglich gemacht werden — sonst wäre die Weitergabe der Pro-Fonts
-ein Lizenzverstoß. Für eine wirklich öffentliche Verteilung müssten die Pro-Fonts
-durch FA Free ersetzt werden (`build.php` könnte das per Schalter erledigen).
+1. Produktschnitt: die sechs oben genannten Befunde auflösen
+2. Quellen der Erweiterungen in dieses Repo überführen
+3. Bau-Skript auf das Repo umstellen statt auf eine laufende Installation
+4. Automatische Installation von Aktualisierungen — Joomla meldet sie von Haus
+   aus nur, es spielt sie nicht ein
+5. Anleitung für die Installation auf fremden Seiten

@@ -1,0 +1,23 @@
+# Verzeichnisauflistung aus - niemand soll den Bestand durchblaettern.
+Options -Indexes
+
+# Die Schluesseldatei ist PHP und wird ohnehin nie ausgeliefert. Der Riegel
+# gilt der Beispieldatei, die sonst im Klartext lesbar waere.
+<FilesMatch "^keys\.php\.beispiel$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Die Versions-XML MUSS frei abrufbar bleiben: Joomla holt sie ohne
+# Anmeldung. Hier steht nur, welche Fassung es gibt - nichts Schuetzenswertes.
+<FilesMatch "\.xml$">
+    <IfModule mod_headers.c>
+        Header set Content-Type "text/xml; charset=utf-8"
+        Header set Cache-Control "public, max-age=300"
+    </IfModule>
+</FilesMatch>

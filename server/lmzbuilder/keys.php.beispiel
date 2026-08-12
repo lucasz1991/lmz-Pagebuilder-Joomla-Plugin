@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * Zugelassene Download-Schluessel.
+ *
+ * Diese Datei nach keys.php kopieren und einen eigenen Schluessel eintragen.
+ * keys.php ist bewusst NICHT im Repo - sonst stuende der Schluessel oeffentlich
+ * auf GitHub.
+ *
+ * Einen Schluessel erzeugen:
+ *   php -r "echo bin2hex(random_bytes(24)), PHP_EOL;"
+ *
+ * In der Ziel-Joomla-Installation einmalig eintragen unter
+ * System -> Aktualisierungs-Server -> LMZ Builder Suite -> Feld "Extra Query":
+ *   key=<hier der Schluessel>
+ */
+
+declare(strict_types=1);
+
+return [
+    /* Mehrere Schluessel sind erlaubt - so laesst sich einer je Kundenseite
+       vergeben und einzeln zuruecknehmen, ohne die anderen zu stoeren. */
+    'schluessel' => [
+        // 'hier-den-erzeugten-schluessel-eintragen',
+    ],
+
+    /* Auf true setzen, wenn das Paket KEIN lizenzpflichtiges Material enthaelt
+       und frei ladbar sein soll. Dann entfaellt die Schluesselpruefung. */
+    'ohne_schluessel' => false,
+];

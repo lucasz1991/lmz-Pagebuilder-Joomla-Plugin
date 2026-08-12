@@ -1,0 +1,15 @@
+# Direktzugriff auf die Pakete sperren.
+#
+# Die Auslieferung laeuft ausschliesslich ueber ../get.php, der den
+# Schluessel prueft. Ohne diese Sperre waere der Torwaechter wirkungslos:
+# man koennte das Archiv einfach unter seinem echten Pfad abrufen.
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>
+
+# Verzeichnisauflistung aus, falls die Sperre einmal nicht greift.
+Options -Indexes

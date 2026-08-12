@@ -1,0 +1,48 @@
+# ---------------------------------------------------------------------------
+# LMZ Builder Suite - was NICHT ins Repo gehoert
+#
+# Dieses Repo ist oeffentlich. Alles hier Aufgefuehrte hat einen Grund; bitte
+# nichts freigeben, ohne den Grund gelesen zu haben.
+# ---------------------------------------------------------------------------
+
+# --- Zugangsschluessel ------------------------------------------------------
+# keys.php enthaelt die Download-Schluessel der Kundenseiten. Nur die
+# Beispieldatei gehoert ins Repo.
+/server/lmzbuilder/keys.php
+
+# --- Abgeloest --------------------------------------------------------------
+# Der fruehere Auslieferungsordner. server/lmzbuilder/ ersetzt ihn; der alte
+# Bestand bleibt auf der Platte, gehoert aber nicht mehr ins Repo.
+/updates/
+
+# --- Bauwerkstatt -----------------------------------------------------------
+# Zwischenstaende des Paketbaus. Sie entstehen bei jedem Lauf neu und blaehen
+# sonst die Historie auf.
+/.work/
+/dist/
+
+# --- FontAwesome Pro --------------------------------------------------------
+# KOMMERZIELL LIZENZIERT, NICHT WEITERVERTEILBAR.
+# Die Pro-Schriften und ihre Metadaten duerfen in einem oeffentlichen Repo
+# nicht liegen. Sie lagen hier bereits (15 MB in dist/com_lmzpagebuilder.zip)
+# und sind entfernt worden. Diese Regeln verhindern, dass sie zurueckkehren.
+**/fontawesome/webfonts/
+**/fontawesome/metadata/
+**/fontawesome/LICENSE.txt
+**/fa-*.woff2
+**/fa-*.ttf
+
+# --- Ausgelieferte Pakete ---------------------------------------------------
+# Die Pakete unter server/lmzbuilder/packages/ SIND versioniert - nur so
+# gelangen sie per Git auf den Auslieferungsserver. Sie duerfen aber kein
+# lizenzpflichtiges Material enthalten; das stellt das Bau-Skript sicher.
+# Alle uebrigen Archive bleiben draussen.
+*.zip
+!/server/lmzbuilder/packages/*.zip
+
+# --- Uebliches --------------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.log
+/.idea/
+/.vscode/
