@@ -699,7 +699,7 @@ function normalizeRelativePath(string $path): string
 
 function makeAbsolute(string $path, string $base): string
 {
-    if (preg_match('~^[A-Za-z]:[\\/]~', $path) === 1 || str_starts_with($path, '/') || str_starts_with($path, '\\')) {
+    if (preg_match('~^[A-Za-z]:[\\\\/]~', $path) === 1 || str_starts_with($path, '/') || str_starts_with($path, '\\')) {
         return $path;
     }
 
@@ -827,7 +827,7 @@ LMZ J-Suite Shared-Source Sync
 
 Aufruf:
   php tools/sync-shared-suite.php
-  php tools/sync-shared-suite.php --check [--target=railtime] [--target=northstaff]
+  php tools/sync-shared-suite.php --check [--target=railtime] [--target=northpaxx]
   php tools/sync-shared-suite.php --apply [--target=...] [--root=ziel-id=pfad]
   php tools/sync-shared-suite.php --json
 

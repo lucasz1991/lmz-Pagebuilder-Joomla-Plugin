@@ -46,7 +46,7 @@ Deshalb liegt unter `server/lmzbuilder/pkg_lmzbuilder.xml` bewusst ein
 der auf ein noch nicht ausgeliefertes Paket zeigt, würde auf jeder
 angeschlossenen Seite eine fehlschlagende Aktualisierung melden.
 
-Für RailTime und NorthStaff gibt es zusätzlich eine sichere lokale
+Für RailTime und NorthPaxx gibt es zusätzlich eine sichere lokale
 Shared-Source-Grundlage. Sie verwaltet zunächst ausschließlich den generischen
 J-Suite-Menü-Plugin und verändert weder Paket-IDs noch Update-Feeds. Details und
 Rolloutbefehle stehen unter [shared-suite/README.md](shared-suite/README.md).

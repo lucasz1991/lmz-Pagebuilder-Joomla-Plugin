@@ -1,10 +1,10 @@
 [CmdletBinding()]
 param(
     [switch] $Apply,
-    [ValidateSet('railtime', 'northstaff')]
+    [ValidateSet('railtime', 'northpaxx')]
     [string[]] $Target = @(),
     [string] $RailTimeRoot,
-    [string] $NorthStaffRoot,
+    [string] $NorthPaxxRoot,
     [switch] $Json,
     [switch] $Help
 )
@@ -39,8 +39,8 @@ if ($RailTimeRoot) {
     $toolArguments += "--root=railtime=$RailTimeRoot"
 }
 
-if ($NorthStaffRoot) {
-    $toolArguments += "--root=northstaff=$NorthStaffRoot"
+if ($NorthPaxxRoot) {
+    $toolArguments += "--root=northpaxx=$NorthPaxxRoot"
 }
 
 if ($Json) {

@@ -13,9 +13,9 @@
       "defaultRoot": "../railtime-joomla-website"
     },
     {
-      "id": "northstaff",
-      "label": "NorthStaff Joomla",
-      "defaultRoot": "../../../northstaff"
+      "id": "northpaxx",
+      "label": "NorthPaxx Joomla",
+      "defaultRoot": "../../../northpaxx"
     }
   ],
   "managedExtensions": [

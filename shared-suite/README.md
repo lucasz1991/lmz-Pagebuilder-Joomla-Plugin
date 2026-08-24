@@ -1,7 +1,7 @@
 # LMZ J-Suite: lokale Shared-Source
 
 Dieser Ordner ist die versionierte, installationsneutrale Quelle für Dateien,
-die RailTime und NorthStaff wirklich gemeinsam verwenden. Der Umfang ist
+die RailTime und NorthPaxx wirklich gemeinsam verwenden. Der Umfang ist
 absichtlich eine Positivliste: Nur die Dateien aus `inventory.json` werden
 geprüft oder synchronisiert.
 
@@ -48,7 +48,7 @@ C:\xampp\php\php.exe .\tools\sync-shared-suite.php --check
 Ein einzelnes Ziel und eine maschinenlesbare Ausgabe:
 
 ```powershell
-.\tools\sync-shared-suite.ps1 -Target northstaff -Json
+.\tools\sync-shared-suite.ps1 -Target northpaxx -Json
 ```
 
 Exitcode `0` bedeutet aktuell, `2` bedeutet fehlende, veraltete oder
@@ -56,11 +56,11 @@ konfliktbehaftete Zieldateien. Weitere Exitcodes zeigt `--help`.
 
 ## Bewusst synchronisieren
 
-Der normale Rollout sollte zuerst NorthStaff als Testziel und danach RailTime
+Der normale Rollout sollte zuerst NorthPaxx als Testziel und danach RailTime
 verwenden:
 
 ```powershell
-.\tools\sync-shared-suite.ps1 -Apply -Target northstaff
+.\tools\sync-shared-suite.ps1 -Apply -Target northpaxx
 .\tools\sync-shared-suite.ps1 -Apply -Target railtime
 ```
 
@@ -76,7 +76,7 @@ unbekannter Ziel-Hash und kein Quellfehler vorliegt.
    `sha256` eintragen.
 4. `suite.version` im Inventar erhöhen.
 5. PHP-Syntax und den Dry-Run für beide Ziele prüfen.
-6. NorthStaff anwenden und funktional testen, danach RailTime anwenden.
+6. NorthPaxx anwenden und funktional testen, danach RailTime anwenden.
 
 Ein Ziel mit einem nicht freigegebenen Hash wird nicht überschrieben. Die
 Abweichung muss zuerst geprüft und entweder in die Shared-Source übernommen
