@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "suite": {
+    "name": "LMZ J-Suite Shared Core",
+    "version": "1.0.0-local.1",
+    "scope": "Generic shared files only"
+  },
+  "sourceRoot": "shared-suite/source",
+  "targets": [
+    {
+      "id": "railtime",
+      "label": "RailTime Joomla",
+      "defaultRoot": "../railtime-joomla-website"
+    },
+    {
+      "id": "northstaff",
+      "label": "NorthStaff Joomla",
+      "defaultRoot": "../../../northstaff"
+    }
+  ],
+  "managedExtensions": [
+    {
+      "type": "plugin",
+      "group": "system",
+      "element": "lmzsuitemenu",
+      "manifest": "plugins/system/lmzsuitemenu/lmzsuitemenu.xml",
+      "packageIdentityManaged": false
+    }
+  ],
+  "guardrails": {
+    "defaultMode": "check",
+    "deleteUnlistedFiles": false,
+    "allowedTargetPrefixes": [
+      "plugins/system/lmzsuitemenu"
+    ],
+    "forbiddenSourceText": [
+      "railtime",
+      "rail-time",
+      "northstaff",
+      "northpaxx",
+      "<updateservers",
+      "src.follow-flow.de"
+    ],
+    "neverManaged": [
+      "administrator/manifests/packages",
+      "pkg_*.xml",
+      "configuration.php",
+      "database content",
+      "site templates and customer content",
+      "update feed metadata"
+    ]
+  },
+  "files": [
+    {
+      "source": "plugins/system/lmzsuitemenu/language/de-DE/plg_system_lmzsuitemenu.ini",
+      "target": "plugins/system/lmzsuitemenu/language/de-DE/plg_system_lmzsuitemenu.ini",
+      "sha256": "9b10c69a25c70f178fa8603699389fa155b3077614f054be394078e3a5555374",
+      "allowedPreviousSha256": []
+    },
+    {
+      "source": "plugins/system/lmzsuitemenu/language/de-DE/plg_system_lmzsuitemenu.sys.ini",
+      "target": "plugins/system/lmzsuitemenu/language/de-DE/plg_system_lmzsuitemenu.sys.ini",
+      "sha256": "9b10c69a25c70f178fa8603699389fa155b3077614f054be394078e3a5555374",
+      "allowedPreviousSha256": []
+    },
+    {
+      "source": "plugins/system/lmzsuitemenu/language/en-GB/plg_system_lmzsuitemenu.ini",
+      "target": "plugins/system/lmzsuitemenu/language/en-GB/plg_system_lmzsuitemenu.ini",
+      "sha256": "260fe4078e5698e75c7cf53d7794157c16cf7e399dab14c55f2fd44475dfdd4e",
+      "allowedPreviousSha256": []
+    },
+    {
+      "source": "plugins/system/lmzsuitemenu/language/en-GB/plg_system_lmzsuitemenu.sys.ini",
+      "target": "plugins/system/lmzsuitemenu/language/en-GB/plg_system_lmzsuitemenu.sys.ini",
+      "sha256": "260fe4078e5698e75c7cf53d7794157c16cf7e399dab14c55f2fd44475dfdd4e",
+      "allowedPreviousSha256": []
+    },
+    {
+      "source": "plugins/system/lmzsuitemenu/language/pl-PL/plg_system_lmzsuitemenu.ini",
+      "target": "plugins/system/lmzsuitemenu/language/pl-PL/plg_system_lmzsuitemenu.ini",
+      "sha256": "f6d501f15e09ce851d3310af232585b0f88aebac5b7270e923affc51d9cab44c",
+      "allowedPreviousSha256": []
+    },
+    {
+      "source": "plugins/system/lmzsuitemenu/language/pl-PL/plg_system_lmzsuitemenu.sys.ini",
+      "target": "plugins/system/lmzsuitemenu/language/pl-PL/plg_system_lmzsuitemenu.sys.ini",
+      "sha256": "f6d501f15e09ce851d3310af232585b0f88aebac5b7270e923affc51d9cab44c",
+      "allowedPreviousSha256": []
+    },
+    {
+      "source": "plugins/system/lmzsuitemenu/lmzsuitemenu.xml",
+      "target": "plugins/system/lmzsuitemenu/lmzsuitemenu.xml",
+      "sha256": "4140701fe9544f7b3227afa63b50d88ff091539171c6c032e8b53d8834c3010f",
+      "allowedPreviousSha256": []
+    },
+    {
+      "source": "plugins/system/lmzsuitemenu/services/provider.php",
+      "target": "plugins/system/lmzsuitemenu/services/provider.php",
+      "sha256": "004a2479ab104b2c872865587affec8305e37a104ac378ebd79e25932adba1d9",
+      "allowedPreviousSha256": []
+    },
+    {
+      "source": "plugins/system/lmzsuitemenu/src/Extension/Lmzsuitemenu.php",
+      "target": "plugins/system/lmzsuitemenu/src/Extension/Lmzsuitemenu.php",
+      "sha256": "a7be6ef43efaa78dedc97344dd150b30991d62c61c132f32adf353c2c79a88b4",
+      "allowedPreviousSha256": []
+    }
+  ]
+}

@@ -1,7 +1,10 @@
-# LMZ Builder Suite — Joomla-Paket und Aktualisierungsdienst
+# LMZ Builder Suite — Produktaufbau
 
-Ein installierbares Joomla-Paket, das die LMZ-Builder-Suite bündelt, sowie der
-Aktualisierungsdienst, über den sich alle Installationen selbst aktuell halten.
+Dieses Repository entwickelt die LMZ-Builder-Suite zu einem eigenständigen
+Joomla-Produkt. Der Zielzustand ist ein installierbares Paket mit geprüftem
+Aktualisierungsdienst. Aktuell freigegeben ist nur die lokale, hash-geprüfte
+Shared-Source für den generischen J-Suite-Menü-Plugin; ein öffentliches Paket
+und automatische Installationen sind noch nicht freigegeben.
 
 Ziel ist ein **eigenständiges Produkt**: installierbar auf beliebigen
 Joomla-5.4-Seiten, nicht nur auf der Seite, aus der es entstanden ist.
@@ -12,7 +15,9 @@ Joomla-5.4-Seiten, nicht nur auf der Seite, aus der es entstanden ist.
 
 | Ordner | Zweck |
 |---|---|
-| `server/` | Wird auf `src.follow-flow.de` ausgeliefert und beantwortet dort die Aktualisierungsanfragen. Siehe [server/README.md](server/README.md). |
+| `server/` | Vorbereitete Dateien für den vorgesehenen Aktualisierungsdienst; ein aktuelles Live-Deployment ist hier nicht belegt. Siehe [server/README.md](server/README.md). |
+| `shared-suite/` | Versionierte, installationsneutrale Shared-Source mit SHA-256-Inventar. Siehe [shared-suite/README.md](shared-suite/README.md). |
+| `tools/` | Sicheres Check-/Sync-Werkzeug; standardmäßig nur lesend, Schreiben ausschließlich mit `--apply`. |
 | `build.php` | Baut die installierbaren Archive und das Paket. |
 | `dist/` | Bauergebnis. Nicht versioniert — entsteht bei jedem Lauf neu. |
 
@@ -20,8 +25,10 @@ Joomla-5.4-Seiten, nicht nur auf der Seite, aus der es entstanden ist.
 
 ## Stand der Arbeit
 
-Der Aktualisierungsdienst ist **fertig und auslieferbar**. Das Produktpaket
-ist es **noch nicht** — eine Prüfung hat fünf Stellen gefunden, an denen die
+Die serverseitige Dienst-Implementierung ist vorbereitet; ihr aktueller
+Live-Deploymentstatus ist in diesem Repository nicht belegt. Das
+Produktpaket ist **noch nicht freigegeben** — eine Prüfung hat Stellen
+gefunden, an denen die
 Suite auf ihre Ursprungsseite festgelegt ist und auf einer fremden Installation
 Schaden anrichten würde:
 
@@ -38,6 +45,11 @@ Deshalb liegt unter `server/lmzbuilder/pkg_lmzbuilder.xml` bewusst ein
 **leeres** Versionsverzeichnis: Joomla liest daraus „nichts Neues". Ein Eintrag,
 der auf ein noch nicht ausgeliefertes Paket zeigt, würde auf jeder
 angeschlossenen Seite eine fehlschlagende Aktualisierung melden.
+
+Für RailTime und NorthStaff gibt es zusätzlich eine sichere lokale
+Shared-Source-Grundlage. Sie verwaltet zunächst ausschließlich den generischen
+J-Suite-Menü-Plugin und verändert weder Paket-IDs noch Update-Feeds. Details und
+Rolloutbefehle stehen unter [shared-suite/README.md](shared-suite/README.md).
 
 ---
 
