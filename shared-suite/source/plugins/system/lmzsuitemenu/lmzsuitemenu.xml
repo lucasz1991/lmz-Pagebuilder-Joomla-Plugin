@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="plugin" group="system" method="upgrade">
+    <name>PLG_SYSTEM_LMZSUITEMENU</name>
+    <author>LMZ Media</author>
+    <authorEmail>info@lmz-media.de</authorEmail>
+    <authorUrl>https://lmz-media.de</authorUrl>
+    <creationDate>2026-08</creationDate>
+    <copyright>(C) 2026 LMZ Media</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <version>1.0.0</version>
+    <description>PLG_SYSTEM_LMZSUITEMENU_XML_DESCRIPTION</description>
+    <targetplatform name="joomla" version="5.4" />
+    <php_minimum>8.1.0</php_minimum>
+    <namespace path="src">LMZ\Plugin\System\Lmzsuitemenu</namespace>
+
+    <files>
+        <folder plugin="lmzsuitemenu">services</folder>
+        <folder>src</folder>
+    </files>
+
+    <languages>
+        <language tag="en-GB">language/en-GB/plg_system_lmzsuitemenu.ini</language>
+        <language tag="en-GB">language/en-GB/plg_system_lmzsuitemenu.sys.ini</language>
+        <language tag="de-DE">language/de-DE/plg_system_lmzsuitemenu.ini</language>
+        <language tag="de-DE">language/de-DE/plg_system_lmzsuitemenu.sys.ini</language>
+        <language tag="pl-PL">language/pl-PL/plg_system_lmzsuitemenu.ini</language>
+        <language tag="pl-PL">language/pl-PL/plg_system_lmzsuitemenu.sys.ini</language>
+    </languages>
+</extension>
